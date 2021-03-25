@@ -49,11 +49,11 @@ async function testCount() {
     }
 }
 
-function test() {
+async function test() {
     // TODO: 改寫程式，完成testWait以後才執行testCount
     // 可以改寫 test, testWait, testCount, 但不一定每個都要改才會成功
-    
-    testWait();
+
+    await testWait();
     testCount();
 }
 

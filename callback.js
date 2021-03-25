@@ -25,11 +25,12 @@ function count(number, callback, errorHandler) {
     }, 1000);
 }
 
-function testWait() {
+function testWait(callback) {
     wait(1, () => {
         console.log("1");
         wait(2, () => {
             console.log("2");
+            callback();
         })
     })
 }
@@ -51,8 +52,7 @@ function test() {
     // TODO: 改寫程式，完成testWait以後才執行testCount
     // 可以改寫 test, testWait, testCount, 但不一定每個都要改才會成功
     
-    testWait();
-    testCount();
+    testWait(testCount);
 }
 
 test();

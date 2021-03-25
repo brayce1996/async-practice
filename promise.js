@@ -30,12 +30,15 @@ function count(number) {
 }
 
 function testWait() {
-    wait(1).then(() => {
-        console.log("1");
-        wait(2).then(() => {
-            console.log("2");
-        });
-    })
+    return new Promise((resolve, reject) => {
+        wait(1).then(() => {
+            console.log("1");
+            wait(2).then(() => {
+                console.log("2");
+                resolve();
+            });
+        })
+    });
 }
 
 function testCount() {
@@ -52,8 +55,9 @@ function test() {
     // TODO: 改寫程式，完成testWait以後才執行testCount
     // 可以改寫 test, testWait, testCount, 但不一定每個都要改才會成功
 
-    testWait();
-    testCount();
+    testWait().then(() => {
+        testCount();
+    });
 }
 
 test();
